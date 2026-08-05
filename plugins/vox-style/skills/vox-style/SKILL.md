@@ -1,12 +1,12 @@
 ---
 name: vox-style
-description: Produce a complete narrated Vox-style motion-graphics explainer video end to end on the Higgsfield MCP, plus the four jobs around it — build a permanent custom style key, scan the news for today's most explainable story, explain Eric's own business, or stand up a whole series with a bible and an episode slate. Researches the topic, writes the script and storyboard, shows everything with a credit estimate at one approval gate, then generates the style key, voiceover, clips, and one assembled MP4. Accepts a topic, a Google Trends term, an article URL, or nothing at all. Three locked house styles. Use when Eric says "/vox-style", "/vox", "vox video", "vox-style video", "motion graphics explainer", "animated explainer", "make a video about X", "make a video about this article", "make a video about what is trending", "make me a faceless video", "run the vox pipeline", "build me a style key", "find me a story to make a video about", "make a video about my business", or "turn this into a series".
+description: Produce a complete narrated Vox-style motion-graphics explainer video end to end on the Higgsfield MCP, plus the four jobs around it — build a permanent custom style key, scan the news for today's most explainable story, explain the user's own business, or stand up a whole series with a bible and an episode slate. Researches the topic, writes the script and storyboard, shows everything with a credit estimate at one approval gate, then generates the style key, voiceover, clips, and one assembled MP4. Accepts a topic, a Google Trends term, an article URL, or nothing at all. Three locked house styles. Use when the user says "/vox-style", "/vox", "vox video", "vox-style video", "motion graphics explainer", "animated explainer", "make a video about X", "make a video about this article", "make a video about what is trending", "make me a faceless video", "run the vox pipeline", "build me a style key", "find me a story to make a video about", "make a video about my business", or "turn this into a series".
 ---
 
 # Vox-Style — one command to a finished explainer video
 
 Turn a topic, a trend, an article, or nothing at all into a finished narrated
-motion-graphics explainer. Eric approves once; everything else is automatic.
+motion-graphics explainer. You approve once; everything else is automatic.
 
 Six modes ship in this skill. **Mode A is the default and the reason the skill
 exists**; the others are the jobs that surround it. The wizard's first question
@@ -20,7 +20,7 @@ install, and no ffmpeg dependency, because assembly runs server-side. The one
 prerequisite is that the Higgsfield MCP is connected to this session.
 
 On the **Flow path** — mode F in `references/modes.md` — nothing is generated
-here at all: this skill writes the prompts and the cut plan, Eric generates the
+here at all: this skill writes the prompts and the cut plan, you generate the
 clips by hand, and the film is assembled locally with ffmpeg for zero Higgsfield
 credits. Everything before generation is identical, and the phases below still
 apply verbatim up to the gate.
@@ -37,7 +37,7 @@ owns every tool call and the assembly contract. **Read it before Phase 1** and
 follow it exactly. Vox-style adds five things on top:
 
 1. Input handling: a Google Trends term, an article URL, or no topic at all.
-2. Locked house styles instead of asking Eric to browse a preset gallery.
+2. Locked house styles instead of a preset gallery to browse.
 3. **The wizard** — a fixed question list with a progress bar, in place of
    upstream's open-ended turns.
 4. **One approval gate** with a credit estimate.
@@ -77,7 +77,7 @@ that deviation is retired — vox now follows upstream Phase 6 verbatim.
 **Paths.** Every `references/`, `assets/` and `scripts/` path below is relative
 to the folder holding this file, and that folder is read-only. Run output goes
 to `output/<slug>/` under `PROJECT_ROOT`: the folder holding the `.vox-root`
-marker (`projects/vox/` from the EricOS repo, or `.` when the project is opened
+marker (a parent repo's `projects/vox/`, or `.` when the project is opened
 directly). If there is no `.vox-root` — this skill was uploaded standalone —
 `PROJECT_ROOT` is the session working directory, in Cowork the outputs
 directory. Never write outside it.
@@ -85,7 +85,7 @@ directory. Never write outside it.
 ## Defaults
 
 Read `.env` at `PROJECT_ROOT` first, if there is one, and let it override this
-table. Eric's explicit words in the request override everything.
+table. Your explicit words in the request override everything.
 
 | Setting | Default | `.env` key |
 |---|---|---|
@@ -109,7 +109,7 @@ Expect `{ credits, subscription_plan_type }`. Note the balance — you need it f
 the gate.
 
 - **Tool not found** → the Higgsfield MCP is not connected in this session. Stop
-  and tell Eric to connect it: in the repo, open the project (`cd vox && claude`),
+  and connect it: in the repo, open the project (`cd vox && claude`),
   approve the project MCP server from `.mcp.json`, and run `/mcp` for the
   one-time OAuth. Standalone: Cowork → Settings → Connectors → Higgsfield, or
   `claude mcp add --transport http --scope user higgsfield https://mcp.higgsfield.ai/mcp`.
@@ -121,12 +121,12 @@ Never fake a generation, and never proceed past the gate without a real balance.
 
 ## The six modes
 
-| Mode | What Eric gets | Where it lives |
+| Mode | What you get | Where it lives |
 |---|---|---|
 | **A. Explainer** (default) | One finished MP4 from a topic, trend, URL, or nothing | Q1–Q8, then Phases T→6 below |
 | **B. Style key** | A permanent custom look for a new series or brand | `references/modes.md` |
 | **C. News radar** | Three scored story candidates, then stop | `references/modes.md` |
-| **D. Business** | A problem→product→CTA video about Eric's own offer | `references/modes.md` |
+| **D. Business** | A problem→product→CTA video about your own offer | `references/modes.md` |
 | **E. Series** | A bible, bookends, an episode slate, and episode one | `references/modes.md` |
 | **F. Manual build** | The same film, generated by hand in Flow for zero Higgsfield credits | `references/modes.md` |
 
@@ -141,7 +141,7 @@ lands on B, C, D or E at Q1, or on a non-Higgsfield backend at Q2 — each of th
 
 ## The wizard
 
-**Every run walks it, including runs that already named a topic.** What Eric
+**Every run walks it, including runs that already named a topic.** What you
 already said is never thrown away and never used as an excuse to skip a
 question — it becomes the **first, pre-selected option**, so accepting it costs
 one keystroke. The wizard is free. Nothing here spends a credit.
@@ -166,7 +166,7 @@ named. Q10 is a clarifier and never counts toward `N`.
 **Every question's first option is the default and carries `(Recommended)`**, so
 the whole wizard walks with eight Enters. `.env` supplies those defaults: it
 decides which option leads, rather than silently deciding the video. That is the
-point — a setting Eric can see and override beats a setting he discovers in the
+point — a setting you can see and override beats one you discover in the
 output.
 
 `AskUserQuestion` takes **four options maximum**, plus the automatic "Other" for
@@ -221,7 +221,7 @@ through Flow for nothing.
 
 | Option | Say |
 |---|---|
-| **← what Eric typed, verbatim** *(Recommended, when there is one)* | Mark it "you said this". |
+| **← what the user typed, verbatim** *(Recommended, when there is one)* | Mark it "you said this". |
 | Find me something trending | I'll search, pick a story with a number in it, and name a runner-up. |
 | *a concrete angle from AI, tech or money* | A real story, not a category. |
 | *a second concrete angle* | Same. |
@@ -322,7 +322,7 @@ escalate** — ten Fast re-rolls cost less than one Quality generation and each 
 them keeps the character.
 
 **Ask before quoting Omni on Flow.** Its Flow tiers, price and reference support
-are not recorded here and must not be guessed. Get them from Eric or from the
+are not recorded here and must not be guessed. Get them from the user or from the
 account, then write them down with the date, like every other number in this
 file.
 
@@ -359,7 +359,7 @@ silence.
 
 This is not a confirmation step. Never use it to re-ask something Q1–Q9 already
 settled, and never use it to ask about subtitles, language or block seconds —
-those stay `.env` defaults and Eric's explicit words still override them.
+those stay `.env` defaults and your explicit words still override them.
 
 **After the wizard, never ask again. The next time you stop is THE GATE.**
 
@@ -380,9 +380,9 @@ Phases 1 to 6 are `higgsfield-video-explainer`'s. Do not reimplement them.
 
 ## Phase T — Topic
 
-Four input modes. Detect which one Eric used.
+Four input modes. Detect which one was used.
 
-| He gave | Do this |
+| Input | Do this |
 |---|---|
 | **A topic** ("the AI bubble") | Use it. Go to Phase R. |
 | **An article URL** | Fetch it. Extract the claim, the numbers, and the angle. Then search for two more sources on the same story so the script is not one outlet's framing. |
@@ -390,7 +390,7 @@ Four input modes. Detect which one Eric used.
 | **Nothing** | Research what is trending, then propose one. |
 
 For the no-topic case, search 2 or 3 angles (`trending topics this week <current
-month year>`, `most searched questions this week`, plus a vertical Eric cares
+month year>`, `most searched questions this week`, plus a vertical you care
 about: AI, tech, money). A good Vox-able topic has a **why/how question** at its
 core, at least one **surprising number or reversal**, strong **visual potential**
 (maps, charts, objects), and broad appeal.
@@ -398,8 +398,8 @@ core, at least one **surprising number or reversal**, strong **visual potential*
 Avoid breaking tragedies and active disasters, celebrity gossip with no data
 angle, and anything you cannot verify against two independent sources.
 
-Always name the chosen topic in the gate message with one runner-up, so Eric can
-swap it in a word.
+Always name the chosen topic in the gate message with one runner-up, so it can
+be swapped in a word.
 
 ## Phase R — Research
 
@@ -467,7 +467,7 @@ Products, logos, landmarks and objects do not trip this. Only faces do.
 
 The gate gains a `SUBJECTS` line naming each real subject, the reference found,
 and the feature description that will go into the prompts. This is the cheapest
-possible moment for Eric to say "that is not him" — it costs nothing, where the
+possible moment to hear "that is not them" — it costs nothing, where the
 same correction after generation costs 30 credits a block.
 
 If no reference can be found or verified, **say so at the gate** and default to
@@ -501,9 +501,10 @@ declarative sentences. The narrator explains, never hypes. No direct address, no
 "let's talk about it", no hype adjectives. The format is faceless, so there is no
 personality on screen to carry a bigger voice; the restraint is what sells it.
 
-Do **not** route narration through `eric-tone`. That skill is for Eric's
-first-person channel voice and it fights the anonymous-narrator format. Only use
-it if he asks for it by name on a specific run.
+Do **not** route narration through a personal-voice skill if one is installed.
+Those are built for a first-person channel voice and they fight the
+anonymous-narrator format. Only use one if it is asked for by name on a specific
+run.
 
 ## Phase B — Storyboard
 
@@ -646,16 +647,16 @@ vocabulary, and its style-key prompt.
    silently losing the aspect.
 3. **Generate one (costs an image).** `generate_image` with model
    `nano_banana_pro`, the style-key prompt from the style file, and
-   `aspect_ratio: "9:16"`. Use this when Eric wants a custom look, or supplies
-   his own reference image as a style donor.
+   `aspect_ratio: "9:16"`. Use this when a custom look is wanted, or when a
+   reference image is supplied as a style donor.
 
 Verify the preset UUIDs against `get_explainer_presets` before using one. The
 list is live and IDs can change.
 
 ## Dual aspect — one set of clips, two cuts
 
-When `VOX_DUAL_ASPECT` is on, Eric wants the same episode as a horizontal
-long-form cut *and* a vertical short. **Never generate a block twice to get
+When `VOX_DUAL_ASPECT` is on, the same episode ships as a horizontal long-form
+cut *and* a vertical short. **Never generate a block twice to get
 both** — that doubles the only expensive part of the run for no reason.
 
 The rule:
@@ -702,15 +703,15 @@ Say both aspects at the gate, and say which one is native.
 ## THE GATE
 
 **Show the script in full. Keep the storyboard folded away.** The narration is what
-viewers hear, so that is what Eric reads. The N visual prompts are written and
+viewers hear, so that is what the user reads. The N visual prompts are written and
 ready, and they go to `storyboard.md` on disk, but they are not pasted into the
-gate message unless he asks. This format is a locked decision.
+gate message unless they ask. This format is a locked decision.
 
 Post one message in this shape:
 
 ```
 TOPIC   <one line>
-ANGLE   <one line>            RUNNER-UP  <topic he can swap to in a word>
+ANGLE   <one line>            RUNNER-UP  <topic swappable in a word>
 
 SCRIPT  (N blocks · <runtime> · <aspect>)
 1  <Block 1 narration>
@@ -736,8 +737,8 @@ own line:
 COST    ~915 cr est · 30 blocks · balance <live balance>
 ```
 
-Then **stop**. Do not submit a paid job until Eric replies. If he asks to see the
-storyboard, print it and hold the gate open. If he asks for changes, revise and
+Then **stop**. Do not submit a paid job until the user replies. If they ask to see the
+storyboard, print it and hold the gate open. If they ask for changes, revise and
 re-post.
 
 **Price it before quoting.** Preflight is free — pass `get_cost: true` and no job
@@ -944,7 +945,7 @@ Manifest shape:
 `explainer_video` is the default and it needs no local tooling. Keep the local
 assembler for the two cases it still wins:
 
-- Eric recorded his own voice and the takes are on disk (though uploading them
+- The takes were recorded by hand and are already on disk (though uploading them
   with `media_upload` and passing the `media_id` as a block's `audio` also
   works, and keeps assembly server-side).
 - The MCP is unreachable and the clips are already downloaded.
@@ -969,37 +970,37 @@ assembler can use, and the rest of the pipeline does not care which was used.
 ### A. Higgsfield TTS (default)
 
 `generate_audio`, model `seed_audio`, with one of the preset narrators from
-`list_voices`. Fully automatic, nothing for Eric to do.
+`list_voices`. Fully automatic, nothing for the user to do.
 
 Pin one voice in `.env` as `VOX_VOICE_ID` + `VOX_VOICE_TYPE` so every video sounds
 the same. Otherwise auto-pick a deep, measured documentary narrator each run.
 
-### B. Eric records it himself
+### B. The user records it
 
 Fully supported, and **the recording order matters.** Voice comes before clips in
 this pipeline because take durations drive the timing. So:
 
 1. Approve the script at the gate.
-2. **Stop and hand Eric the script**, block by block, with the target of about 8
-   to 9 seconds per block. Tell him to save one file per block as
+2. **Stop and hand over the script**, block by block, with the target of about 8
+   to 9 seconds per block. Say to save one file per block as
    `output/<slug>/audio/block-01.wav` … `block-NN.wav`. Any wav or mp3 works, and
    sample rate does not matter.
-3. Wait for him to say they are in.
-4. Probe each file's real duration. If a take exceeds about 11 seconds, tell him
-   which block and let him redo it, or offer to trim the line.
+3. Wait for confirmation that they are in.
+4. Probe each file's real duration. If a take exceeds about 11 seconds, name the
+   block and offer either a re-record or a shorter line.
 5. Upload each take with `media_upload` + `media_confirm` and use the returned
    `media_id` as that block's `audio` in `explainer_video`. (Or assemble locally
    with `scripts/assemble.py` if ffmpeg is handy and you would rather not
    upload.)
 
-Do **not** generate the clips first and ask him to voice over them afterwards.
-That locks the visuals to timing his delivery has to chase, and it is the harder
-way round for no benefit.
+Do **not** generate the clips first and ask for a voice-over afterwards. That
+locks the visuals to timing the delivery has to chase, and it is the harder way
+round for no benefit.
 
-If he only wants to replace some blocks, use his files where they exist and
+To replace only some blocks, use the supplied files where they exist and
 `seed_audio` for the rest. Both paths mix freely.
 
-### C. Clone his voice once, then mode A forever
+### C. Clone the voice once, then mode A forever
 
 The best of both, and worth setting up once. On the MCP this no longer needs the
 web app: `create_voice` (and `create_voice_from_confirmed_audio`) clone a voice
@@ -1007,7 +1008,7 @@ directly. A clone then appears in `list_voices` with `voice_type: "element"` and
 is used exactly like a preset.
 
 Put that id and `element` into `.env` as `VOX_VOICE_ID` / `VOX_VOICE_TYPE`. Every
-future video is then in his voice with zero recording effort, including the
+future video is then in that voice with zero recording effort, including the
 other-language variants.
 
 Check `list_voices` for existing clones rather than assuming there are none.
@@ -1151,7 +1152,7 @@ Fix and re-render what is broken before delivering. Re-running one block costs
 ## Delivery
 
 Final message: the path to `final.mp4`, the topic and angle in one sentence, the
-full script so Eric can reuse it, the Sources list, and **actual credits spent
+full script so it can be reused, the Sources list, and **actual credits spent
 versus the estimate**. Then offer, do not run, `yt-publish` for titles and
 description if it is headed to YouTube.
 

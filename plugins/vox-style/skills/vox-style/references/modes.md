@@ -36,11 +36,11 @@ used to carry. Ask the whole set, every run.
 
 ## Mode B — Build a permanent style key
 
-**When:** Eric wants a look the three house styles do not cover — a new series, a
-client brand, his own colors.
+**When:** the brief wants a look the three house styles do not cover — a new series, a
+client brand, the user's own colors.
 
 **Why it is not just `generate_image`:** the point is a key that survives hundreds
-of clips. That takes a proposal step Eric can steer before anything costs money,
+of clips. That takes a proposal step the user can steer before anything costs money,
 and a style bible written down so the look is reproducible after this session is
 gone.
 
@@ -66,7 +66,7 @@ keep it a slug. Q4 is asking for the six to eight cut-outs that go on the key.
 2. **Propose three directions in words. Generate nothing yet.** For each: the
    background material, the palette in three to four named colors, the texture,
    and one line on why it fits. Number them and stop. This step is free and it is
-   what stops Eric paying for a look he was never going to keep.
+   what stops anyone paying for a look they were never going to keep.
 
 3. **Generate the key.** `generate_image`, model `nano_banana_pro`, at
    `VOX_DEFAULT_ASPECT`. Compose it as a flat-lay reference sheet photographed
@@ -88,7 +88,7 @@ keep it a slug. Q4 is asking for the six to eight cut-outs that go on the key.
    The bundled `assets/newsroom-style-sheet-prompt.txt` is the worked example of
    this prompt shape. Follow its structure.
 
-4. **Show it. Revise on request without defending it.** When Eric approves, save
+4. **Show it. Revise on request without defending it.** On approval, save
    the image under `PROJECT_ROOT/styles/<name>.png`, keep the `media_id`, and
    report both the path and the job id.
 
@@ -99,11 +99,11 @@ keep it a slug. Q4 is asking for the six to eight cut-outs that go on the key.
    three bundled style files so it drops into the same slot.
 
 6. **Prove it holds under animation.** Generate ONE ten-second test clip with the
-   key attached, aspect passed explicitly, on a simple scene from Eric's topic
-   area. Pull three frames and show him. A key that looks right as a still and
+   key attached, aspect passed explicitly, on a simple scene from the topic
+   area. Pull three frames and show them. A key that looks right as a still and
    drifts under motion is a key that will ruin a whole batch.
 
-7. **Register it.** Tell Eric to put the `media_id` in `.env` as
+7. **Register it.** Say to put the `media_id` in `.env` as
    `VOX_STYLE_KEY_ID`, and note the new style file so future runs can name it.
 
 **Cost:** one image, plus one 10s clip for the proof. Quote it at the gate.
@@ -116,12 +116,13 @@ trendy that dates in six months. No faces, no logos, no real brands.
 
 ## Mode C — News radar
 
-**When:** Eric wants to publish and has no topic, and wants to *choose* rather
+**When:** the user wants to publish, has no topic, and wants to *choose* rather
 than be handed one.
 
 **Difference from mode A's no-topic path:** Phase T picks a topic and names one
 runner-up. Mode C scores three candidates against four explicit tests and stops.
-Use mode C when Eric asks to be pitched; use Phase T when he just wants a video.
+Use mode C when the user asks to be pitched; use Phase T when they just want a
+video.
 
 ### The wizard — 3 questions
 
@@ -173,13 +174,13 @@ The pitch step is free. Only the mode-A run that follows costs credits.
 
 ---
 
-## Mode D — Explain Eric's own business
+## Mode D — Explain the user's own business
 
-**When:** the subject is Eric's product, offer or service rather than a news
-story.
+**When:** the subject is the user's own product, offer or service rather than a
+news story.
 
 **What changes:** there are no outside sources to verify against, so the
-discipline moves. Every number in the script must come **from Eric**. Never
+discipline moves. Every number in the script must come **from the user**. Never
 invent a result, a timeframe, or a testimonial, and never soften an absent number
 into a vague claim that implies one.
 
@@ -192,8 +193,8 @@ into a vague claim that implies one.
 | 3 | `Pain` | What does it remove? | *the pain implied by Q1* · Let me describe it · **I'll tell you in their words** |
 | 4 | `CTA` | What should they do? | **Visit the link** · Book a call · Reply or DM · free text |
 
-These four replace the old six-input collection. What is not asked — what he
-delivers, and the proof — comes out of step 2's story hunt, because both need
+These four replace the old six-input collection. What is not asked — what the
+offer delivers, and the proof — comes out of step 2's story hunt, because both need
 the problem framed first to be worth anything.
 
 ### Procedure
@@ -216,7 +217,7 @@ the problem framed first to be worth anything.
    | 2 | What it costs to keep living with it |
    | 3 | The reframe — the surprising truth |
    | 4 | How the fix actually works, plain language, no feature list |
-   | 5 | Proof, using only Eric's numbers |
+   | 5 | Proof, using only the user's numbers |
    | N | The call to action, one clear instruction |
 
    **Banned words:** solution, innovative, seamless, leverage, revolutionize.
@@ -227,8 +228,8 @@ the problem framed first to be worth anything.
    represents the customer's problem and physically changes across the blocks:
    tangled to straight, heavy to light, scattered to stacked, closed to open.
 
-5. **Style key in Eric's brand colors.** Either mode B, or the flat-lay prompt
-   from the chosen style file with the palette swapped for his colors.
+5. **Style key in the brand's colors.** Either mode B, or the flat-lay prompt
+   from the chosen style file with the palette swapped for the brand's colors.
 
 6. **Gate, then build** exactly as mode A. Same phases 1–6, same verify.
 
@@ -239,7 +240,7 @@ the problem framed first to be worth anything.
 
 ## Mode E — Stand up a series
 
-**When:** Eric wants a channel, not another one-off.
+**When:** the brief is a channel, not another one-off.
 
 **What it produces:** four artifacts plus episode one. Everything lands in
 `PROJECT_ROOT/series/<name>/`.
@@ -290,7 +291,7 @@ onward stop asking.
    Apply mode C's four tests here — the slate is a batch radar run.
 
 4. **The checklist** → `checklist.md`. Numbered, with the exact settings that
-   worked, so Eric or an assistant can run an episode without thinking. Include
+   worked, so anyone can run an episode without thinking. Include
    the failure points and the fix for each: style drift, duplicated text in
    clips, narration running long, silence at the head of a take, clips returning
    in the wrong aspect, jobs that hang. Lift the specifics from `SKILL.md`'s
@@ -332,7 +333,7 @@ the whole reason it is written down now.
 | GATE | credits quoted from `get_cost` | quote the **Flow** credit table, and say Higgsfield spend is zero |
 | 1 Style key | `resolve_explainer_preset` or `generate_image` | none. Flow has no style key: every prompt is self-describing |
 | 2–3 Voice | `generate_audio` | ElevenLabs API direct, `scripts/elevenlabs-voice.py` |
-| 4 Clips | `generate_video` | **Eric generates by hand**, then drops them in `clips/` |
+| 4 Clips | `generate_video` | **the user generates by hand**, then drops them in `clips/` |
 | 5 Assemble | `explainer_video` | `scripts/build-ad.py`, local ffmpeg |
 | 6 Sound bed | `restore-sound-bed.py` | already handled inside `build-ad.py` |
 
@@ -374,7 +375,7 @@ cp <skill>/scripts/{make-prompts,elevenlabs-voice,build-ad}.py output/<slug>/
    and only there. Export the last frame of a clip and pass it as the first frame
    of the next. Everywhere else it is a needless constraint on the shot's opening.
 
-5. **Gate, then Eric generates.** Hand over `prompts-flow.txt` with the tier and
+5. **Gate, then the user generates.** Hand over `prompts-flow.txt` with the tier and
    the ingredients named per clip. Then wait: nothing else can proceed.
 
 6. **Voice before clips still holds.** Take durations drive the cut, so synthesize
