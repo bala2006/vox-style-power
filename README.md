@@ -19,12 +19,46 @@ Two backends, picked in the wizard:
 
 Then run it with `/vox-style`, or just ask for "a video about X".
 
-**It updates itself.** The plugin declares no pinned version, so every commit
-pushed here is a new version: Claude Code picks it up on its background refresh,
-and `/plugin update` pulls it on demand. To force a catalog refresh:
+Both lines are needed — adding the marketplace registers the catalog, installing
+picks the plugin out of it. There is no combined command. From a shell, without
+the interactive panel:
+
+```bash
+claude plugin marketplace add AICreatorEngine/vox-style-skill
+claude plugin install vox-style@vox
+```
+
+### Turn auto-update on, it is off by default
+
+The plugin declares **no pinned version**, so every commit pushed here counts as
+a new version. But **third-party marketplaces ship with auto-update disabled** —
+only Anthropic's official ones have it on. Enable it once:
+
+```
+/plugin            →  Marketplaces  →  vox  →  Enable auto-update
+```
+
+Until you do, pull updates by hand:
 
 ```
 /plugin marketplace update vox
+```
+
+### For a team
+
+Put this in the project's `.claude/settings.json` and teammates are prompted to
+install it when they trust the folder, instead of typing anything:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "vox": {
+      "source": { "source": "github", "repo": "AICreatorEngine/vox-style-skill" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": ["vox-style@vox"]
+}
 ```
 
 ## What you need
