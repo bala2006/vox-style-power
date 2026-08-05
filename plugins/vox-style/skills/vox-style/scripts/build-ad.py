@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Monte l'ad Culotte Minceur (36,6s, 9:16) depuis cinq clips Flow générés à la main.
+Monte une pub verticale depuis des clips générés à la main (Flow, Runway, Kling…).
 
 Quatre choses que ce script fait et que le pipeline vox ne fait pas :
 
@@ -89,12 +89,12 @@ UPPERCASE = True                 # idiome CapCut. .upper() garde les accents et 
 POP_STEPS = [(0.00, 1.34), (0.08, 1.26), (0.16, 1.20)]
 
 # --- la carte offre, incrustée sur la carte d'argile vierge du plan 10 -------
-# Générer "MOINS DE 11€" dans l'argile serait un pari à chaque re-roll : au-delà
+# Générer un prix dans le décor serait un pari à chaque re-roll : au-delà
 # de ~8 caractères le lettrage IA double et déforme. La carte est générée VIERGE
 # et le texte propre vient se poser dessus ici.
-OFFER_LINES = [("MOINS DE 11€", 68, TERRACOTTA),
-               ("LIVRAISON OFFERTE", 34, INK),
-               ("PAIEMENT SÉCURISÉ", 34, INK)]
+OFFER_LINES = [("<PRIX>", 68, TERRACOTTA),
+               ("<LIGNE 2>", 34, INK),
+               ("<LIGNE 3>", 34, INK)]
 # Mesuré sur la frame livrée : la carte d'argile vierge occupe y 620-1030. À 430
 # l'incrustation flottait au-dessus d'elle au lieu de se poser dessus. À 700 elle
 # est centrée sur la carte et reste dégagée de la bande de sous-titres (y 985+).
@@ -112,15 +112,15 @@ OFFER_SHOT = 12                  # entrée de la carte vierge, puis tenu sur le 
 # la rampe de vitesse, que le playbook demande de toute façon.
 #
 # VITESSES RÉSOLUES sur les durées de narration RÉELLES, mesurées le 2026-08-05
-# avec la voix MNKK2Wl2wbbsEPQTHZGt au preset B (chaleureuse) :
+# (exemple réel, cinq blocs) :
 #   5,294 / 7,245 / 5,851 / 5,851 / 12,353  =  36,595s
 # Ce script recompare à chaque exécution et refuse de monter si l'écart dépasse
 # TOL, donc re-voicer sans re-résoudre est impossible par accident.
 #
 # Trois choses que ces nombres portent et qu'une lecture rapide manquerait :
 #
-# - Le plan 8 démarre à 0,55 dans le clip D, pas à 0,00. La sortie de la robe
-#   doit tomber sur "La robe, je l'ai ressortie" (23,36 -> 24,24), soit 4,97s
+# - Le plan 8 démarre à 0,55 dans le clip D, pas à 0,00. Le beat héros
+#   doit tomber sur la phrase qui le nomme (23,36 -> 24,24), soit 4,97s
 #   après le début du plan. En partant à 0,55 à vitesse native, elle atterrit
 #   dessus sans accélérer le seul mouvement de grue payé 100 crédits.
 # - Le plan 7 saute la source 3,00-4,00 du clip C. C'est une coupe interne sur le
@@ -129,27 +129,27 @@ OFFER_SHOT = 12                  # entrée de la carte vierge, puis tenu sur le 
 #   explique le produit et l'accélérer le rend illisible.
 # - Le clip E est découpé en TROIS plans, pas deux. Le bloc 5 dure 12,35s pour
 #   8,00s de source, donc E tourne à 0,65x de moyenne et tout y dérive vers la
-#   fin. Trois plans permettent de tenir l'étiquette -50% sur "à moitié prix"
+#   fin. Trois plans permettent de tenir l'étiquette de prix sur sa phrase
 #   (28,07 -> 28,80) au lieu de la laisser glisser sous le prix.
 SHOTS = [
-    ("clip-A", 0.30, 3.40, 1.00, 1.0690),  # 1  elle tient la robe, la range  2.900s
-    ("clip-A", 5.30, 8.00, 1.00, 1.1279),  # 2  la porte, son visage         2.394s
-    ("clip-B", 0.00, 2.60, 1.00, 1.0833),  # 3  la pile qui monte            2.400s
-    ("clip-B", 3.20, 5.40, 1.20, 0.9565),  # 4  elle minuscule, punché       2.300s
-    ("clip-B", 6.00, 8.00, 1.00, 0.7859),  # 5  son visage, l'accablement    2.545s
-    ("clip-C", 0.30, 3.10, 1.00, 1.0370),  # 6  la remise de la gaine        2.700s
-    ("clip-C", 3.40, 6.60, 1.00, 1.0155),  # 7  elle la porte, la robe       3.151s
-    ("clip-D", 1.90, 8.00, 1.00, 1.0425),  # 8  HÉROS : la robe ressort      5.851s
-    ("clip-E", 1.00, 3.20, 1.00, 1.0680),  # 9  la joie, en robe             2.060s
-    ("clip-E", 4.30, 5.60, 1.00, 0.7345),  # 10 le tampon 30 000             1.770s
-    ("clip-E", 5.90, 6.70, 1.00, 0.4372),  # 11 l'étiquette -50%             1.830s
-    ("clip-E", 6.80, 8.00, 1.00, 0.6000),  # 12 la carte vierge              2.000s
+    ("clip-A", 0.30, 3.40, 1.00, 1.0690),  # 1  premier beat                2.900s
+    ("clip-A", 5.30, 8.00, 1.00, 1.1279),  # 2  second beat                 2.394s
+    ("clip-B", 0.00, 2.60, 1.00, 1.0833),  # 3  impact                      2.400s
+    ("clip-B", 3.20, 5.40, 1.20, 0.9565),  # 4  même clip, punché à 1,20x   2.300s
+    ("clip-B", 6.00, 8.00, 1.00, 0.7859),  # 5  fin du clip                 2.545s
+    ("clip-C", 0.30, 3.10, 1.00, 1.0370),  # 6  premier beat               2.700s
+    ("clip-C", 3.40, 6.60, 1.00, 1.0155),  # 7  saut interne, second beat  3.151s
+    ("clip-D", 1.90, 8.00, 1.00, 1.0425),  # 8  LE PLAN HÉROS, jamais coupé 5.851s
+    ("clip-E", 1.00, 3.20, 1.00, 1.0680),  # 9  ouverture du dernier clip  2.060s
+    ("clip-E", 4.30, 5.60, 1.00, 0.7345),  # 10 premier prop chiffré       1.770s
+    ("clip-E", 5.90, 6.70, 1.00, 0.4372),  # 11 second prop chiffré        1.830s
+    ("clip-E", 6.80, 8.00, 1.00, 0.6000),  # 12 support vierge pour l'offre 2.000s
 ]
 
 # La carte vierge finale est tenue en ARRÊT SUR IMAGE pour le reste du bloc 5.
 # Le clip E n'a que 1,2s de source sur ce beat pour 6,4s de call to action : le
 # jouer à 0,19x serait une bouillie au ralenti. Un end card immobile se lit comme
-# voulu, et c'est là que l'incrustation MOINS DE 11 EUR doit rester lisible.
+# voulu, et c'est là que l'incrustation de l'offre doit rester lisible.
 FREEZE_TAIL = 4.695
 
 TOL = 0.15                       # écart image/narration toléré, en secondes
@@ -160,10 +160,9 @@ TOL = 0.15                       # écart image/narration toléré, en secondes
 # atterrissait sous "more than half publish every single day".
 #
 # (mots à trouver dans la narration, plan attendu à l'écran à ce moment)
+# Un par prop qui DOIT être à l'image quand la narration le nomme.
 SYNC_CHECKS = [
-    (["ressortie"],          8),   # la robe sort du placard
-    (["trente", "mille"],    9),   # elle, en robe, heureuse
-    (["moitié", "prix"],    11),   # l'étiquette -50%
+    # (["mot", "clé"],   3),   # le plan qui porte ce prop
 ]
 
 # Veo rend un niveau audio très inégal d'un clip à l'autre : sur ce run, de
@@ -208,12 +207,14 @@ def dur(p: Path) -> float:
         capture_output=True, text=True, check=True).stdout.strip())
 
 
-# La narration dit "onze euros" pour que le moteur lise le bon nombre, mais le
+# La narration épelle parfois un nombre pour que le moteur le lise juste, mais le
 # SOUS-TITRE doit montrer le prix. Sans ça le prix s'affiche en toutes lettres
 # exactement au moment où il doit frapper.
+# Exemples : une somme épelée pour le moteur mais affichée en chiffres, et un
+# nom de produit en deux mots qu'il faut garder d'un bloc.
 MERGES = [
-    (["onze", "euros"], "11€"),
-    (["culotte", "minceur"], "Culotte Minceur"),
+    # (["onze", "euros"], "11€"),
+    # (["nom", "produit"], "Nom Produit"),
 ]
 
 

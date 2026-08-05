@@ -3,7 +3,7 @@
 Développe les prompts de storyboard-flow.md dans prompts-flow.txt.
 
 storyboard-flow.md est la SOURCE et garde les espaces réservés <STYLE TOKENS> et
-<MARGOT>, écrits une seule fois chacun. Les dupliquer dans chaque prompt
+<CHARACTER>, écrits une seule fois chacun. Les dupliquer dans chaque prompt
 obligerait à corriger huit endroits pour un mot, et l'un des huit finirait par
 diverger — ce qui casse précisément la chose que ces blocs existent pour tenir :
 un monde et un personnage identiques sur des générations indépendantes.
@@ -40,28 +40,19 @@ OUT = ROOT / "prompts-flow.txt"
 # Ordre du document. Un prompt ajouté ou retiré dans storyboard-flow.md doit
 # apparaître ici, sinon le script s'arrête au lieu de mal étiqueter.
 LABELS = [
-    ("INGRÉDIENT 1 — MARGOT", "image", "—",
-     "À générer EN PREMIER. Regarde-la vraiment avant de lancer un clip."),
-    ("INGRÉDIENT 2 — LA ROBE", "image", "—",
-     "Le fil rouge. Présente dans les cinq clips."),
-    ("CLIP A", "Veo 3.1 Fast", "plans 1-2",
-     "Ingrédients : MARGOT + LA ROBE."),
-    ("CLIP A — VARIANTE DE SECOURS", "Veo 3.1 Fast", "plans 1-2",
-     "À n'utiliser que si le clip A rate encore après deux re-rolls. "
-     "Sans porte, sans personnage : presque infaillible, mais on perd le "
-     "visage de Margot dans le bloc 1."),
-    ("CLIP B", "Veo 3.1 Fast", "plans 3-4-5",
-     "Ingrédient : MARGOT."),
-    ("CLIP C", "Veo 3.1 Fast", "plans 6-7",
-     "Ingrédient : MARGOT."),
-    ("CLIP D", "Veo 3.1 QUALITY", "plan 8",
-     "Ingrédients : MARGOT + LA ROBE. Le plan héros. Exporte sa DERNIÈRE IMAGE."),
-    ("CLIP E", "Veo 3.1 Fast", "plans 9-10-11",
-     "Ingrédients : MARGOT + LA ROBE, ET la dernière image de D en image de "
-     "départ."),
+    ("INGRÉDIENT 1 — PERSONNAGE", "image", "—",
+     "À générer EN PREMIER. Regarde-le vraiment avant de lancer un clip."),
+    ("INGRÉDIENT 2 — OBJET FIL ROUGE", "image", "—",
+     "Présent dans tous les clips."),
+    ("CLIP A", "Fast", "plans 1-2", "Ingrédients : PERSONNAGE."),
+    ("CLIP B", "Fast", "plans 3-4-5", "Ingrédients : PERSONNAGE."),
+    ("CLIP C", "Fast", "plans 6-7", "Ingrédients : PERSONNAGE."),
+    ("CLIP D", "Fast", "plan 8", "Exporte sa DERNIÈRE IMAGE pour le clip suivant."),
+    ("CLIP E", "Fast", "plans 9-10-11",
+     "Ingrédients + la dernière image de D en image de départ."),
 ]
 
-HEADER = """PROMPTS FLOW — Culotte Minceur, claymation 9:16
+HEADER = """PROMPTS FLOW — <sujet>, <style>, 9:16
 ================================================================================
 Prompts DÉJÀ DÉVELOPPÉS. Rien à remplacer, rien à assembler.
 Copie un bloc entier entre les lignes de tirets et colle-le dans Google Flow.
@@ -77,8 +68,8 @@ def main() -> None:
     blocks = re.findall(r"^```\n(.*?)^```", SRC.read_text(), re.S | re.M)
     style = next(b for b in blocks
                  if b.startswith("Handmade stop-motion")).strip()
-    margot = next(b for b in blocks
-                  if b.startswith("<MARGOT>")).split("\n", 1)[1].strip()
+    character = next(b for b in blocks
+                  if b.startswith("<CHARACTER>")).split("\n", 1)[1].strip()
     prompts = [b for b in blocks if b.startswith("<STYLE TOKENS>")]
 
     if len(prompts) != len(LABELS):
@@ -89,12 +80,12 @@ def main() -> None:
     parts = [HEADER]
     for (name, tier, shots, note), p in zip(LABELS, prompts):
         body = (p.replace("<STYLE TOKENS>", style)
-                 .replace("<MARGOT>", margot).strip())
+                 .replace("<CHARACTER>", character).strip())
         parts.append(f"\n\n{'=' * 80}\n{name}   ·   {tier}   ·   {shots}\n"
                      f"{note}\n{'-' * 80}\n\n{body}\n\n{'-' * 80}")
 
     text = "\n".join(parts) + "\n"
-    left = [t for t in ("<STYLE TOKENS>", "<MARGOT>") if t in text]
+    left = [t for t in ("<STYLE TOKENS>", "<CHARACTER>") if t in text]
     if left:
         sys.exit(f"substitution incomplète, il reste : {', '.join(left)}")
 

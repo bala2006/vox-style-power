@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Génère les cinq blocs de narration française via l'API ElevenLabs directe.
+Génère les blocs de narration via l'API ElevenLabs directe.
 
 Pourquoi ce fichier existe : le text2speech_v2 de Higgsfield n'expose que
 variant + voice_type + voice_id, donc on est limité aux voix curées de
@@ -50,21 +50,9 @@ MODEL = "eleven_multilingual_v2"
 # Rien d'autre n'est touché : les chiffres et les promesses appartiennent au
 # client et ne sont ni inventés ni adoucis ici.
 BLOCKS = [
-    "Il y a un an, j'ai rangé ma robe préférée au fond de l'armoire. "
-    "Sans rien dire à personne.",
-
-    "On n'en parle pas, mais ça pèse sur le moral. On s'habille pour cacher, "
-    "plus pour se plaire, et ça ne devrait pas être le cas.",
-
-    "Un jour, ma sœur m'a montré sa Culotte Minceur. Elle affine la taille dès "
-    "qu'on la met, sous les vêtements.",
-
-    "Et elle fait transpirer, tranquillement, pendant qu'on vit sa journée. "
-    "La robe, je l'ai ressortie.",
-
-    "Trente mille femmes seniors la portent déjà. Aujourd'hui, elle est à "
-    "moitié prix. Moins de onze euros, livraison offerte et rapide avec un "
-    "paiement sécurisé. Le lien est juste en dessous.",
+    "<Bloc 1. Le texte tel qu'il sera prononcé, rien d'autre.>",
+    "<Bloc 2.>",
+    "<Bloc 3.>",
 ]
 
 # Trois interprétations de la même voix. Stability basse = plus de variation et
