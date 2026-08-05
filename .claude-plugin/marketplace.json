@@ -1,0 +1,14 @@
+{
+  "name": "vox",
+  "owner": {
+    "name": "Paglilouc",
+    "url": "https://github.com/Paglilouc"
+  },
+  "plugins": [
+    {
+      "name": "vox-style",
+      "source": "./plugins/vox-style",
+      "description": "Turn a topic, a trend, an article or nothing at all into a finished narrated motion-graphics explainer video. Runs on the Higgsfield MCP, or hands you the prompts for a manual build in Google Flow."
+    }
+  ]
+}
