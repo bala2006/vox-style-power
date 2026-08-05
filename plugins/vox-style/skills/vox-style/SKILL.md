@@ -297,30 +297,41 @@ Each description carries the **run total for the length chosen at Q5**, not just
 the per-clip price. Six blocks on seedance is a different conversation from six
 on gemini.
 
-**On a Flow backend the list is different**, and one constraint decides it:
+**On a Flow backend the list is different**, and it is not a Veo-only list.
+Flow Lab also runs Omni. **Do not assume the roster** — read what the account
+actually offers at run time, because it changes, and quote from that.
+
+What does not change is the constraint that decides the tier:
+
+> **Pick the tier by whether it accepts reference images, not by its price.**
+
+A tier that takes no reference cannot hold a character or a product across clips,
+whatever it costs. Verified on a real Flow run, 2026-08-05:
 
 | Tier | Cost (Ultra) | Reference images |
 |---|---|---|
-| **Veo 3.1 Fast** *(Recommended)* | 10 | **yes** — takes ingredients |
+| **Veo 3.1 Fast** | 10 | **yes** — takes ingredients |
 | Veo 3.1 Lite | 5 | yes, weaker |
 | Veo 3.1 Quality | 100 | **NO — cannot take ingredients** |
 
-**Veo Quality does not accept ingredients, so it cannot hold a character or a
-product across clips.** That single fact overturns the obvious plan. Spending 100
-credits on "the hero shot" buys the one clip in the film with no reference
-attached, which is precisely the clip where drift is most visible. Reported by
-Eric after a real Flow run, 2026-08-05.
+That single fact overturns the obvious plan. Spending 100 credits on "the hero
+shot" buys the one clip in the film with no reference attached, which is
+precisely the clip where drift is most visible. **Everything on the
+reference-capable tier, references on every clip, and re-roll rather than
+escalate** — ten Fast re-rolls cost less than one Quality generation and each of
+them keeps the character.
 
-So on Flow: **everything on Fast, with the ingredients attached to every clip.**
-Re-roll a Fast clip until it lands rather than reaching for Quality — ten
-re-rolls still cost less than one Quality generation, and each of them keeps the
-character.
+**Ask before quoting Omni on Flow.** Its Flow tiers, price and reference support
+are not recorded here and must not be guessed. Get them from Eric or from the
+account, then write them down with the date, like every other number in this
+file.
 
-**And say this out loud when it is true:** if the film needs a recognizable
-character or product held across every clip, `gemini_omni` on Higgsfield with a
-style key beats Veo Fast, and Eric rates it above Fast and Lite. The
-ingredient constraint is a real argument *for* the Higgsfield backend, not a
-detail — raise it at Q2 rather than discovering it at the gate.
+**The backend argument is about what surrounds the model, not the model.** Since
+the same engines can be reachable on both sides, do not sell Higgsfield on the
+engine. Sell it on what Flow has no equivalent for: reference elements and Soul
+identity training, Marketing Studio, server-side assembly, and one credit
+balance you can preflight with `get_cost`. Flow wins on cost — zero Higgsfield
+credits — and on reaching whatever the account offers today.
 
 ### Q9 `Likeness` — only when something real and recognizable is named
 

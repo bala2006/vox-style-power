@@ -388,14 +388,19 @@ cp <skill>/scripts/{make-prompts,elevenlabs-voice,build-ad}.py output/<slug>/
 
 ### The credit table is a different one
 
-| Tier | Cost (Flow, Ultra) | Reference images |
-|---|---|---|
-| Veo 3.1 Lite | 5 | yes, weaker |
-| **Veo 3.1 Fast** | **10** | **yes** |
-| Veo 3.1 Quality | 100 | **no** |
+Flow's roster is not Veo-only — Omni runs there too — and it moves. Read what the
+account offers at run time instead of trusting this table, which records only
+what has been verified:
 
-**Veo Quality cannot take ingredients**, so it cannot hold a character or a
-product across clips. Never spend it on "the hero shot": that buys the one clip
+| Tier | Cost (Flow, Ultra) | Reference images | Verified |
+|---|---|---|---|
+| Veo 3.1 Lite | 5 | yes, weaker | 2026-08-05 |
+| **Veo 3.1 Fast** | **10** | **yes** | 2026-08-05 |
+| Veo 3.1 Quality | 100 | **no** | 2026-08-05 |
+| Omni | *unknown* | *unknown* | — ask before quoting |
+
+**Pick the tier by reference support, not by price. Veo Quality cannot take
+ingredients**, so it cannot hold a character or a product across clips. Never spend it on "the hero shot": that buys the one clip
 with no reference attached, which is exactly where drift shows. Everything on
 Fast, ingredients on every clip, and re-roll rather than escalate — ten Fast
 re-rolls cost less than one Quality generation and every one of them keeps the
