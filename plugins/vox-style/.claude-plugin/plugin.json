@@ -2,10 +2,10 @@
   "name": "vox-style",
   "description": "Turn a topic, a trend, an article or nothing at all into a finished narrated motion-graphics explainer video. Researches, writes the script and storyboard, shows everything at one approval gate with a credit estimate, then generates the style key, voiceover, clips and one assembled MP4. Six modes, three locked house styles, and a manual Google Flow path that spends no Higgsfield credits.",
   "author": {
-    "name": "Paglilouc",
-    "url": "https://github.com/Paglilouc"
+    "name": "AICreatorEngine",
+    "url": "https://github.com/AICreatorEngine"
   },
-  "homepage": "https://github.com/Paglilouc/vox-style-skill",
+  "homepage": "https://github.com/AICreatorEngine/vox-style-skill",
   "license": "MIT",
   "keywords": ["video", "explainer", "higgsfield", "veo", "motion-graphics", "elevenlabs"]
 }

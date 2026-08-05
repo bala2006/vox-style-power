@@ -13,7 +13,7 @@ Two backends, picked in the wizard:
 ## Install
 
 ```
-/plugin marketplace add Paglilouc/vox-style-skill
+/plugin marketplace add AICreatorEngine/vox-style-skill
 /plugin install vox-style@vox
 ```
 
