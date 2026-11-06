@@ -1,0 +1,43 @@
+{
+  "name": "vox-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that turns a script and storyboard into a narrated Vox-style motion-graphics explainer. Coded scenes rendered with Remotion, narration from ElevenLabs. No AI video generation.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "vox-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "src/remotion",
+    "src/shared",
+    "guides"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.remotion.json",
+    "start": "node dist/index.js",
+    "studio": "remotion studio src/remotion/index.ts",
+    "smoke": "node scripts/smoke.mjs --mock-tts",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@remotion/bundler": "4.0.541",
+    "@remotion/google-fonts": "4.0.541",
+    "@remotion/renderer": "4.0.541",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "4.0.541",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.541",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "5.9.3"
+  }
+}

@@ -10,6 +10,12 @@ Two backends, picked in the wizard:
 - **Google Flow, by hand** — the skill writes the prompts and the cut plan, you
   generate the clips, it assembles locally. **Zero Higgsfield credits.**
 
+> **New: [`mcp-server/`](mcp-server/README.md)** — a standalone MCP server that
+> builds the same kind of explainer with **no video generation**: coded
+> Remotion templates, ElevenLabs narration with word-synced captions, and a
+> local MP4 render. Connect it to any MCP client (Claude Desktop, Cursor, Kiro,
+> VS Code, Claude Code).
+
 ## Install
 
 ```
